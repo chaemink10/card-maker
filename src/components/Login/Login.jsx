@@ -1,15 +1,33 @@
 import React from 'react';
-import Header from './Header';
+import Footer from '../footer/Footer';
+import Header from '../header/Header';
 import style from './login.module.css';
-import LoginService from './LoginService';
 
-const Login = (props) => {
+const Login = ({ authService }) => {
+  const onHandleLogin = (event) => {
+    authService.login(event.currentTarget.textContent).then(console.log);
+  };
+
   return (
-    <div className={style.login}>
+    <section className={style.login}>
       <Header />
-      <LoginService />
-      <footer className={style.footer}>Code your dream</footer>
-    </div>
+      <section className={style.loginBody}>
+        <h2>Login</h2>
+        <ul>
+          <li>
+            <button className={style.btn} onClick={onHandleLogin}>
+              Google
+            </button>
+          </li>
+          <li>
+            <button className={style.btn} onClick={onHandleLogin}>
+              Github
+            </button>
+          </li>
+        </ul>
+      </section>
+      <Footer />
+    </section>
   );
 };
 

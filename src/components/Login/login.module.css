@@ -11,28 +11,17 @@
 img {
   width: 2.7rem;
 }
-.header {
-  width: 100%;
-  height: 4rem;
-  background: makerGreen;
-  text-align: center;
-  padding: 7px 0;
-}
-.header_txt {
-  font-size: 1.7rem;
-  color: makerWhite;
-  font-weight: bold;
-}
+
 .loginBody {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   padding: 20px 10px;
 }
 h2 {
+  text-align: center;
   font-size: 1.7rem;
   margin-bottom: 10px;
+}
+ul li {
+  list-style: none;
 }
 .btn {
   width: 100%;
@@ -47,14 +36,4 @@ h2 {
   transform: scale(1.03);
   transition-timing-function: ease;
   transition-duration: 0.5s;
-}
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 2.2rem;
-  background: makerGreen;
-  font-size: 0.8rem;
-  color: makerWhite;
 }
