@@ -1,0 +1,8 @@
+@value makerGreen,makerWhite,makerLightGrey from './../../common/colors.css';
+.contentbox {
+  width: 60em;
+  background: makerWhite;
+}
+.contentbody {
+  height: 30em;
+}
