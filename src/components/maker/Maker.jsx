@@ -1,16 +1,24 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import style from './maker.module.css';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
-const Maker = () => {
+const Maker = ({ authService }) => {
   const history = useHistory();
 
   //Logout
   const onHandleLogout = () => {
-    history.push('/');
+    authService.logout();
   };
+
+  useEffect(() => {
+    authService.onAuthChange((user) => {
+      if (!user) {
+        history.push('/');
+      }
+    });
+  });
 
   return (
     <section className={style.contentbox}>
