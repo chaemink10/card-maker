@@ -9,7 +9,7 @@ const Login = ({ authService }) => {
   };
 
   return (
-    <section className={style.login}>
+    <section className={style.loginbox}>
       <Header />
       <section className={style.loginBody}>
         <h2>Login</h2>

@@ -1,12 +1,17 @@
 import React from 'react';
 import style from './header.module.css';
 
-const Header = (props) => {
+const Header = ({ onLogout }) => {
   return (
-    <div className={style.header}>
+    <header className={style.header}>
+      {true && (
+        <button onClick={onLogout} className={style.logout}>
+          Logout
+        </button>
+      )}
       <img src='/images/logo.png' alt='header' />
       <p className={style.header_txt}>Business Card Maker</p>
-    </div>
+    </header>
   );
 };
 

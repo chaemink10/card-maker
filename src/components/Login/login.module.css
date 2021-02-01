@@ -1,13 +1,10 @@
 @value makerGreen,makerWhite,makerLightGrey from './../../common/colors.css';
 
-.login {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 23rem;
+.loginbox {
+  width: 25rem;
   background: makerWhite;
 }
+
 img {
   width: 2.7rem;
 }
