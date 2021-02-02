@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import style from './maker.module.css';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
+import Editor from '../editor/Editor';
+import Preview from '../preview/Preview';
 
 const Maker = ({ authService }) => {
   const history = useHistory();
@@ -21,9 +23,12 @@ const Maker = ({ authService }) => {
   });
 
   return (
-    <section className={style.contentbox}>
+    <section className={style.maker}>
       <Header onLogout={true} onClickLogout={onHandleLogout} />
-      <section className={style.contentbody}>Hello</section>
+      <section className={style.container}>
+        <Editor />
+        <Preview />
+      </section>
       <Footer />
     </section>
   );

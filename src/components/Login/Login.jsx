@@ -30,7 +30,7 @@ const Login = ({ authService }) => {
   useEffect(() => {
     authService.onAuthChange((user) => {
       user && goToMaker(user.uid);
-    });
+    }, []);
   });
 
   return (

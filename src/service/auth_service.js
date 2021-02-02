@@ -9,6 +9,8 @@ class AuthService {
   logout() {
     return firebase.auth().signOut();
   }
+
+  //login이 되어있는지 체크
   onAuthChange(onUserChanged) {
     firebase.auth().onAuthStateChanged((user) => {
       onUserChanged(user);

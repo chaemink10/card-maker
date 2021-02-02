@@ -1,8 +1,20 @@
 @value makerGreen,makerWhite,makerLightGrey from './../../common/colors.css';
-.contentbox {
-  width: 60em;
+@value mediaQuery from './../../common/size.css';
+
+.maker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
   background: makerWhite;
 }
-.contentbody {
-  height: 30em;
+.container {
+  display: flex;
+  flex: 1;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .container {
+    flex-direction: column;
+  }
 }
