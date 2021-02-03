@@ -1,4 +1,4 @@
-@value makerGreen,makerWhite,makerLightGrey from './../../common/colors.css';
+@value makerGreen,makerWhite,makerLightGrey,makerBlack,makerColorful,makerLightPink from './../../common/colors.css';
 
 .preview {
   flex-basis: 50%;
@@ -8,4 +8,27 @@
   text-align: center;
   color: makerGreen;
   font-size: 1.3em;
+}
+img {
+  width: 90px;
+  margin-right: 2em;
+}
+.theme_dark {
+  display: flex;
+  background: makerBlack;
+  color: makerWhite;
+  border-radius: 0.5em;
+  padding: 1em;
+}
+.theme_light {
+  display: flex;
+  background: makerLightPink;
+  border-radius: 0.5em;
+  padding: 1em;
+}
+.theme_colorful {
+  display: flex;
+  background: makerColorful;
+  border-radius: 0.5em;
+  padding: 1em;
 }

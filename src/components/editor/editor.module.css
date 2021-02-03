@@ -11,6 +11,16 @@
   color: makerGreen;
   font-size: 1.3em;
 }
+textarea {
+  width: 100%;
+}
+.row {
+  display: flex;
+}
+.row > * {
+  flex: 1 1;
+  padding: 0.5em;
+}
 @media screen and (max-width: mediaQuery) {
   .editor {
     border-right: 0;
