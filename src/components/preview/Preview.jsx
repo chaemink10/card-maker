@@ -1,5 +1,6 @@
 import React from 'react';
 import { uid } from 'uid';
+import Card from '../card/Card';
 import style from './preview.module.css';
 
 const Preview = ({ cards }) => {
@@ -8,27 +9,9 @@ const Preview = ({ cards }) => {
       <h2 className={style.title}>Card Preview</h2>
       {cards.map((card) => {
         return (
-          <div
-            key={uid(card)}
-            className={
-              card.theme === 'light'
-                ? style.theme_light
-                : card.theme === 'dark'
-                ? style.theme_dark
-                : card.theme === 'colorful'
-                ? style.theme_colorfor
-                : ''
-            }
-          >
-            <img src='/images/default_logo.png' alt='face' />
-            <div>
-              <div>{card.name}</div>
-              <div>{card.compnay}</div>
-              <div>{card.title}</div>
-              <div>{card.email}</div>
-              <div>{card.message}</div>
-            </div>
-          </div>
+          <ul key={uid(card)} className={style.cardlist}>
+            <Card card={card} />
+          </ul>
         );
       })}
     </div>

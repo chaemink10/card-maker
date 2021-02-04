@@ -9,12 +9,37 @@ import Preview from '../preview/Preview';
 const Maker = ({ authService }) => {
   const [cards, setCards] = useState([
     {
+      id: '1',
       name: 'Min',
       company: 'Samsung',
       theme: 'colorful',
       title: 'Software Engineer',
       email: 'min@gmail.com',
       message: 'fighting',
+      fileName: 'Min',
+      fileURL: null,
+    },
+    {
+      id: '2',
+      name: 'Chaemin',
+      company: 'SSG',
+      theme: 'dark',
+      title: 'FrontEnd Developer',
+      email: 'ssg.chaemin@gmail.com',
+      message: 'just 80%',
+      fileName: 'chaemin',
+      fileURL: null,
+    },
+    {
+      id: '3',
+      name: 'MyungWoo',
+      company: 'CJ Logistics',
+      theme: 'light',
+      title: '3PL',
+      email: 'smw@gmail.com',
+      message: `Let's Play`,
+      fileName: 'myungwoo',
+      fileURL: 'min.png',
     },
   ]);
 
@@ -31,25 +56,6 @@ const Maker = ({ authService }) => {
         history.push('/');
       }
     });
-
-    setCards([
-      {
-        name: 'Chaemin',
-        company: 'SSG',
-        theme: 'dark',
-        title: 'FrontEnd Developer',
-        email: 'ssg.chaemin@gmail.com',
-        message: 'just 80%',
-      },
-      {
-        name: 'MyungWoo',
-        company: 'CJ Logistics',
-        theme: 'light',
-        title: '3PL',
-        email: 'smw@gmail.com',
-        message: `Let's Play`,
-      },
-    ]);
   }, [authService, history]);
 
   return (
