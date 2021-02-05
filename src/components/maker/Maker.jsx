@@ -58,11 +58,18 @@ const Maker = ({ authService }) => {
     });
   }, [authService, history]);
 
+  //Data Input
+  const onHandleAdd = (card) => {
+    const updated = [...cards, card];
+    setCards(updated);
+    console.log(updated);
+  };
+
   return (
     <section className={style.maker}>
       <Header onLogout={true} onClickLogout={onHandleLogout} />
       <section className={style.container}>
-        <Editor cards={cards} />
+        <Editor cards={cards} onAdd={onHandleAdd} />
         <Preview cards={cards} />
       </section>
       <Footer />
