@@ -17,14 +17,14 @@ const CardAddForm = ({ onAdd }) => {
     event.preventDefault();
     const card = {
       id: uid(),
-      name: nameRef.current.value || '',
-      company: companyRef.current.value || '',
+      name: nameRef.current.value || ' ',
+      company: companyRef.current.value || ' ',
       theme: themeRef.current.value,
-      title: titleRef.current.value || '',
-      email: emailRef.current.value || '',
-      message: messageRef.current.value || '',
-      fileName: '',
-      fileURL: '',
+      title: titleRef.current.value || ' ',
+      email: emailRef.current.value || ' ',
+      message: messageRef.current.value || ' ',
+      fileName: ' ',
+      fileURL: ' ',
     };
     formRef.current.reset();
     onAdd(card);
