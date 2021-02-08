@@ -6,8 +6,5 @@
 }
 .cardlist {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0.2em;
-  padding: 0.4em 2em;
+  flex-direction: column;
 }

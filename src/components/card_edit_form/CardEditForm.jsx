@@ -11,13 +11,12 @@ const CardEditForm = ({ card, onUpdate, onDelete }) => {
     email,
     message,
     theme,
-    fileName,
-    fileURL,
+    // fileName,
+    // fileURL,
   } = card;
 
-  const onDeleteClick = (event) => {
-    event.preventDefault();
-    onDelete(card.id);
+  const onDeleteClick = () => {
+    onDelete(card);
   };
 
   const onChange = (event) => {

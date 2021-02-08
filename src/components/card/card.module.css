@@ -3,10 +3,13 @@
 .card {
   display: flex;
   border-radius: 0.5em;
-  padding: 1.5em;
   width: 100%;
   max-width: 30rem;
   box-shadow: makerShadow;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5em;
+  padding: 1em 2em;
 }
 .card.dark {
   background: makerBlack;

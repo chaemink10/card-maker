@@ -7,8 +7,8 @@ import Editor from '../editor/Editor';
 import Preview from '../preview/Preview';
 
 const Maker = memo(({ authService }) => {
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: '1',
       name: 'Min',
       company: 'Samsung',
@@ -19,7 +19,7 @@ const Maker = memo(({ authService }) => {
       fileName: 'Min',
       fileURL: null,
     },
-    {
+    2: {
       id: '2',
       name: 'Chaemin',
       company: 'SSG',
@@ -30,7 +30,7 @@ const Maker = memo(({ authService }) => {
       fileName: 'chaemin',
       fileURL: null,
     },
-    {
+    3: {
       id: '3',
       name: 'MyungWoo',
       company: 'CJ Logistics',
@@ -41,7 +41,7 @@ const Maker = memo(({ authService }) => {
       fileName: 'myungwoo',
       fileURL: 'min.png',
     },
-  ]);
+  });
 
   const history = useHistory();
 
@@ -58,26 +58,22 @@ const Maker = memo(({ authService }) => {
     });
   }, [authService, history]);
 
-  //Data Add
-  const onHandleAdd = (card) => {
-    const updated = [...cards, card];
-    setCards(updated);
-    console.log(updated);
-  };
-
-  //Data Update
-  const onHandleUpdate = (card) => {
-    const update = cards.map((item) =>
-      item.id === card.id ? (item = card) : item
-    );
-    const updatedCards = [...update];
-    setCards(updatedCards);
+  //Data Add and Update
+  const onHandleAddUpdate = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
   };
 
   //Data Delete
-  const onHandleDelete = (deletedItemId) => {
-    const deleted = cards.filter((item) => item.id !== deletedItemId);
-    setCards(deleted);
+  const onHandleDelete = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[card.id];
+      return updated;
+    });
   };
 
   return (
@@ -86,8 +82,8 @@ const Maker = memo(({ authService }) => {
       <section className={style.container}>
         <Editor
           cards={cards}
-          onAdd={onHandleAdd}
-          onUpdate={onHandleUpdate}
+          onAdd={onHandleAddUpdate}
+          onUpdate={onHandleAddUpdate}
           onDelete={onHandleDelete}
         />
         <Preview cards={cards} />
