@@ -3,7 +3,7 @@ import Button from '../button/Button';
 import ImageFileInput from '../image_file_input/ImageFileInput';
 import style from './card_edit_form.module.css';
 
-const CardEditForm = ({ card }) => {
+const CardEditForm = ({ card, onUpdate, onDelete }) => {
   const {
     name,
     company,
@@ -15,38 +15,70 @@ const CardEditForm = ({ card }) => {
     fileURL,
   } = card;
 
-  const onSubmit = () => {};
+  const onDeleteClick = (event) => {
+    event.preventDefault();
+    onDelete(card.id);
+  };
+
+  const onChange = (event) => {
+    event.preventDefault();
+    onUpdate({
+      ...card,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
 
   return (
     <form className={style.form}>
       <input
         className={style.input}
+        name='name'
         type='text'
-        defaultValue={name}
+        value={name}
         placeholder='Name'
+        onChange={onChange}
       />
       <input
         className={style.input}
-        defaultValue={company}
+        name='company'
+        value={company}
         placeholder='Company'
+        onChange={onChange}
       />
-      <select name='theme' defaultValue={theme} className={style.select}>
+      <select
+        name='theme'
+        value={theme}
+        className={style.select}
+        onChange={onChange}
+      >
         <option value='dark'>Dark</option>
         <option value='light'>Light</option>
         <option value='colorful'>Colorful</option>
       </select>
-      <input className={style.input} defaultValue={title} placeholder='Title' />
-      <input className={style.input} defaultValue={email} placeholder='Email' />
+      <input
+        className={style.input}
+        name='title'
+        value={title}
+        placeholder='Title'
+        onChange={onChange}
+      />
+      <input
+        className={style.input}
+        name='email'
+        value={email}
+        placeholder='Email'
+        onChange={onChange}
+      />
       <textarea
         name='message'
-        defaultValue={message ? message : ''}
+        value={message}
+        onChange={onChange}
         className={style.textarea}
-        placeholder='Message'
-      ></textarea>
+      />
       <div className={style.fileInput}>
         <ImageFileInput />
       </div>
-      <Button name='Delete' onClick={onSubmit} />
+      <Button name='Delete' onClick={onDeleteClick} />
     </form>
   );
 };
