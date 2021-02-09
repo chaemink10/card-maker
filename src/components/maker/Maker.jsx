@@ -6,7 +6,7 @@ import Footer from '../footer/Footer';
 import Editor from '../editor/Editor';
 import Preview from '../preview/Preview';
 
-const Maker = memo(({ authService }) => {
+const Maker = memo(({ authService, imageService }) => {
   const [cards, setCards] = useState({
     1: {
       id: '1',
@@ -16,7 +16,7 @@ const Maker = memo(({ authService }) => {
       title: 'Software Engineer',
       email: 'min@gmail.com',
       message: 'fighting',
-      fileName: 'Min',
+      fileName: '',
       fileURL: null,
     },
     2: {
@@ -27,7 +27,7 @@ const Maker = memo(({ authService }) => {
       title: 'FrontEnd Developer',
       email: 'ssg.chaemin@gmail.com',
       message: 'just 80%',
-      fileName: 'chaemin',
+      fileName: '',
       fileURL: null,
     },
     3: {
@@ -38,8 +38,8 @@ const Maker = memo(({ authService }) => {
       title: '3PL',
       email: 'smw@gmail.com',
       message: `Let's Play`,
-      fileName: 'myungwoo',
-      fileURL: 'min.png',
+      fileName: '',
+      fileURL: null,
     },
   });
 
@@ -85,6 +85,7 @@ const Maker = memo(({ authService }) => {
           onAdd={onHandleAddUpdate}
           onUpdate={onHandleAddUpdate}
           onDelete={onHandleDelete}
+          imageService={imageService}
         />
         <Preview cards={cards} />
       </section>

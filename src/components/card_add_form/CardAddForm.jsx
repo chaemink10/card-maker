@@ -4,7 +4,7 @@ import Button from '../button/Button';
 import ImageFileInput from '../image_file_input/ImageFileInput';
 import style from './card_add_form.module.css';
 
-const CardAddForm = ({ onAdd }) => {
+const CardAddForm = ({ onAdd, imageService }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -12,6 +12,9 @@ const CardAddForm = ({ onAdd }) => {
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
+
+  let fileURLValue = {};
+  let fileNameValue = {};
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -23,11 +26,18 @@ const CardAddForm = ({ onAdd }) => {
       title: titleRef.current.value || ' ',
       email: emailRef.current.value || ' ',
       message: messageRef.current.value || ' ',
-      fileName: ' ',
-      fileURL: ' ',
+      fileURL: fileURLValue || ' ',
+      fileName: fileNameValue || ' ',
     };
     formRef.current.reset();
     onAdd(card);
+  };
+
+  const onHandleUpload = (target) => {
+    imageService.upload(target.current.files['0']).then((data) => {
+      fileURLValue = data.url;
+      fileNameValue = data.original_filename;
+    });
   };
 
   return (
@@ -69,7 +79,7 @@ const CardAddForm = ({ onAdd }) => {
         placeholder='message'
       ></textarea>
       <div className={style.fileInput}>
-        <ImageFileInput />
+        <ImageFileInput onUpload={onHandleUpload} />
       </div>
       <Button name='Add' onClick={onSubmit} />
     </form>
