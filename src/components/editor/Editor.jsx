@@ -3,20 +3,20 @@ import CardEditForm from '../card_edit_form/CardEditForm';
 import CardAddForm from '../card_add_form/CardAddForm';
 import style from './editor.module.css';
 
-const Editor = ({ cards, onAdd, onUpdate, onDelete, imageService }) => {
+const Editor = ({ FileInput, cards, onAdd, onUpdate, onDelete }) => {
   return (
     <div className={style.editor}>
       <h2 className={style.title}>Card Maker</h2>
       {Object.keys(cards).map((key) => (
         <CardEditForm
           key={key}
+          FileInput={FileInput}
           card={cards[key]}
           onUpdate={onUpdate}
           onDelete={onDelete}
-          imageService={imageService}
         />
       ))}
-      <CardAddForm card={cards} onAdd={onAdd} imageService={imageService} />
+      <CardAddForm card={cards} onAdd={onAdd} FileInput={FileInput} />
     </div>
   );
 };

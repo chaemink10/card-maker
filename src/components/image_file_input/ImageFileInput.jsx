@@ -1,25 +1,31 @@
 import React, { useRef } from 'react';
 import style from './image_file_input.module.css';
 
-const ImageFileInput = ({ onUpload, fileName, fileURL }) => {
+const ImageFileInput = ({ imageService, onUpload, fileName }) => {
   const fileRef = useRef();
 
   const onChange = (event) => {
     event.preventDefault();
-    onUpload(fileRef);
+
+    imageService.upload(fileRef.current.files[0]).then((data) => {
+      onUpload({
+        name: data.original_filename,
+        url: data.url,
+      });
+    });
   };
 
   return (
     <div className={style.uploadbtn}>
       <input
+        ref={fileRef}
         type='file'
         name='files[]'
-        ref={fileRef}
-        onChange={onChange}
         className={style.upload}
-        accept='.png, .jpg, .jpeg, .gif'
+        accept='image/*'
+        onChange={onChange}
       />
-      <span className={style.filename}>{fileName ? fileName : 'Upload'}</span>
+      <span className={style.filename}>{fileName ? fileName : 'No file'}</span>
     </div>
   );
 };

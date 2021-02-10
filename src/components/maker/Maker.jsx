@@ -6,7 +6,7 @@ import Footer from '../footer/Footer';
 import Editor from '../editor/Editor';
 import Preview from '../preview/Preview';
 
-const Maker = memo(({ authService, imageService }) => {
+const Maker = memo(({ authService, FileInput }) => {
   const [cards, setCards] = useState({
     1: {
       id: '1',
@@ -81,11 +81,11 @@ const Maker = memo(({ authService, imageService }) => {
       <Header onLogout={true} onClickLogout={onHandleLogout} />
       <section className={style.container}>
         <Editor
+          FileInput={FileInput}
           cards={cards}
           onAdd={onHandleAddUpdate}
           onUpdate={onHandleAddUpdate}
           onDelete={onHandleDelete}
-          imageService={imageService}
         />
         <Preview cards={cards} />
       </section>

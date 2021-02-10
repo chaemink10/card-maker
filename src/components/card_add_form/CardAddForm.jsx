@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { uid } from 'uid';
 import Button from '../button/Button';
-import ImageFileInput from '../image_file_input/ImageFileInput';
 import style from './card_add_form.module.css';
 
-const CardAddForm = ({ onAdd, imageService }) => {
+const CardAddForm = ({ FileInput, onAdd }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -13,8 +12,7 @@ const CardAddForm = ({ onAdd, imageService }) => {
   const emailRef = useRef();
   const messageRef = useRef();
 
-  let fileURLValue = {};
-  let fileNameValue = {};
+  const [file, setFile] = useState({ fileName: null, fileURL: null });
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -26,18 +24,16 @@ const CardAddForm = ({ onAdd, imageService }) => {
       title: titleRef.current.value || ' ',
       email: emailRef.current.value || ' ',
       message: messageRef.current.value || ' ',
-      fileURL: fileURLValue || ' ',
-      fileName: fileNameValue || ' ',
+      fileURL: file.fileURL || ' ',
+      fileName: file.fileName || ' ',
     };
     formRef.current.reset();
+    setFile({ fileName: null, fileURL: null });
     onAdd(card);
   };
 
-  const onHandleUpload = (target) => {
-    imageService.upload(target.current.files['0']).then((data) => {
-      fileURLValue = data.url;
-      fileNameValue = data.original_filename;
-    });
+  const onHandleUpload = (fileInfo) => {
+    setFile({ fileName: fileInfo.name, fileURL: fileInfo.url });
   };
 
   return (
@@ -79,7 +75,8 @@ const CardAddForm = ({ onAdd, imageService }) => {
         placeholder='message'
       ></textarea>
       <div className={style.fileInput}>
-        <ImageFileInput onUpload={onHandleUpload} />
+        <FileInput onUpload={onHandleUpload} fileName={file.fileName} />
+        {/* <ImageFileInput onUpload={onHandleUpload} /> */}
       </div>
       <Button name='Add' onClick={onSubmit} />
     </form>

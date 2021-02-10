@@ -1,9 +1,8 @@
 import React from 'react';
 import Button from '../button/Button';
-import ImageFileInput from '../image_file_input/ImageFileInput';
 import style from './card_edit_form.module.css';
 
-const CardEditForm = ({ card, onUpdate, onDelete, imageService }) => {
+const CardEditForm = ({ FileInput, card, onUpdate, onDelete }) => {
   const {
     name,
     company,
@@ -27,12 +26,8 @@ const CardEditForm = ({ card, onUpdate, onDelete, imageService }) => {
     });
   };
 
-  const onHandleUpload = (target) => {
-    imageService.upload(target.current.files['0']).then((data) => {
-      card.fileURL = data.url;
-      card.fileName = data.original_filename;
-      onUpdate(card);
-    });
+  const onHandleUpload = (fileInfo) => {
+    onUpdate({ ...card, fileName: fileInfo.name, fileURL: fileInfo.url });
   };
 
   return (
@@ -83,7 +78,7 @@ const CardEditForm = ({ card, onUpdate, onDelete, imageService }) => {
         className={style.textarea}
       />
       <div className={style.fileInput}>
-        <ImageFileInput
+        <FileInput
           onUpload={onHandleUpload}
           fileName={fileName}
           fileURL={fileURL}

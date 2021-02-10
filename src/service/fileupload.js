@@ -9,17 +9,11 @@ class ImageService {
     formData.append('api_key', process.env.REACT_APP_CLODINARY_API_KEY);
     formData.append('upload_preset', process.env.REACT_APP_CLODINARY_PRESET);
 
-    return fetch(this.url, {
+    const result = await fetch(this.url, {
       method: 'POST',
       body: formData,
-    })
-      .then((response) => {
-        return response.text();
-      })
-      .then((data) => {
-        const result = JSON.parse(data);
-        return result;
-      });
+    });
+    return await result.json();
   }
 }
 
