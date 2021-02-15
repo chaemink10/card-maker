@@ -1,17 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import style from './image_file_input.module.css';
 
 const ImageFileInput = ({ imageService, onUpload, fileName }) => {
   const fileRef = useRef();
+  const [loading, setLoding] = useState(false);
 
-  const onChange = (event) => {
-    event.preventDefault();
-
-    imageService.upload(fileRef.current.files[0]).then((data) => {
-      onUpload({
-        name: data.original_filename,
-        url: data.url,
-      });
+  const onChange = async (event) => {
+    setLoding(true);
+    const uploaded = await imageService.upload(fileRef.current.files[0]);
+    setLoding(false);
+    onUpload({
+      name: uploaded.original_filename,
+      url: uploaded.url,
     });
   };
 
@@ -25,7 +25,14 @@ const ImageFileInput = ({ imageService, onUpload, fileName }) => {
         accept='image/*'
         onChange={onChange}
       />
-      <span className={style.filename}>{fileName ? fileName : 'No file'}</span>
+      {!loading && (
+        <span
+          className={`${style.filename} ${fileName ? style.pink : style.grey}`}
+        >
+          {fileName ? fileName : 'No file'}
+        </span>
+      )}
+      {loading && <div className={style.loading}></div>}
     </div>
   );
 };

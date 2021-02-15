@@ -1,8 +1,11 @@
-@value makerBlack,makerLightPink from './../../common/colors.css';
+@value makerBlack,makerLightPink,makerLightGrey from './../../common/colors.css';
 
 .uploadbtn {
   position: relative;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .upload {
   position: absolute;
@@ -29,5 +32,34 @@
   justify-content: center;
   align-items: center;
   z-index: 0;
+}
+
+.filename:hover {
+  cursor: pointer;
+}
+
+.pink {
   background: makerLightPink;
+}
+
+.grey {
+  background: makerLightGrey;
+}
+
+.loading {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 3px solid makerLightGrey;
+  border-top: 3px solid makerLightPink;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
