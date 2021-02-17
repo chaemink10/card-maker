@@ -10,8 +10,8 @@ const CardEditForm = ({ FileInput, card, onUpdate, onDelete }) => {
     email,
     message,
     theme,
-    fileName,
-    fileURL,
+    filename,
+    fileurl,
   } = card;
 
   const onDeleteClick = () => {
@@ -27,7 +27,7 @@ const CardEditForm = ({ FileInput, card, onUpdate, onDelete }) => {
   };
 
   const onHandleUpload = (fileInfo) => {
-    onUpdate({ ...card, fileName: fileInfo.name, fileURL: fileInfo.url });
+    onUpdate({ ...card, filename: fileInfo.name, fileurl: fileInfo.url });
   };
 
   return (
@@ -80,8 +80,8 @@ const CardEditForm = ({ FileInput, card, onUpdate, onDelete }) => {
       <div className={style.fileInput}>
         <FileInput
           onUpload={onHandleUpload}
-          fileName={fileName}
-          fileURL={fileURL}
+          fileName={filename}
+          fileURL={fileurl}
         />
       </div>
       <Button name='Delete' onClick={onDeleteClick} />

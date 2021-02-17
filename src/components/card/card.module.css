@@ -18,6 +18,7 @@
 .card.light {
   background: makerWhite;
   color: makerBlack;
+  border: 1px solid makerWheat;
 }
 .card.colorful {
   background: makerColorful;

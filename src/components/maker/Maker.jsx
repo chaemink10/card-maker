@@ -6,43 +6,8 @@ import Footer from '../footer/Footer';
 import Editor from '../editor/Editor';
 import Preview from '../preview/Preview';
 
-const Maker = memo(({ authService, FileInput }) => {
-  const [cards, setCards] = useState({
-    1: {
-      id: '1',
-      name: 'Min',
-      company: 'Samsung',
-      theme: 'colorful',
-      title: 'Software Engineer',
-      email: 'min@gmail.com',
-      message: 'fighting',
-      fileName: '',
-      fileURL: null,
-    },
-    2: {
-      id: '2',
-      name: 'Chaemin',
-      company: 'SSG',
-      theme: 'dark',
-      title: 'FrontEnd Developer',
-      email: 'ssg.chaemin@gmail.com',
-      message: 'just 80%',
-      fileName: '',
-      fileURL: null,
-    },
-    3: {
-      id: '3',
-      name: 'MyungWoo',
-      company: 'CJ Logistics',
-      theme: 'light',
-      title: '3PL',
-      email: 'smw@gmail.com',
-      message: `Let's Play`,
-      fileName: '',
-      fileURL: null,
-    },
-  });
-
+const Maker = memo(({ authService, FileInput, DBService, cardsLoad }) => {
+  const [cards, setCards] = useState({});
   const history = useHistory();
 
   //Logout
@@ -56,13 +21,18 @@ const Maker = memo(({ authService, FileInput }) => {
         history.push('/');
       }
     });
-  }, [authService, history]);
+
+    DBService.load().on('value', (card) => {
+      setCards(card.val());
+    });
+  }, [authService, history, cardsLoad, DBService]);
 
   //Data Add and Update
   const onHandleAddUpdate = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;
+      DBService.save(updated);
       return updated;
     });
   };
@@ -71,6 +41,7 @@ const Maker = memo(({ authService, FileInput }) => {
   const onHandleDelete = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
+      DBService.delete(card);
       delete updated[card.id];
       return updated;
     });
@@ -82,12 +53,12 @@ const Maker = memo(({ authService, FileInput }) => {
       <section className={style.container}>
         <Editor
           FileInput={FileInput}
-          cards={cards}
+          cards={cards && cards}
           onAdd={onHandleAddUpdate}
           onUpdate={onHandleAddUpdate}
           onDelete={onHandleDelete}
         />
-        <Preview cards={cards} />
+        <Preview cards={cards && cards} />
       </section>
       <Footer />
     </section>
