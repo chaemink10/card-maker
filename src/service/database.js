@@ -7,6 +7,7 @@ class Database {
     return database;
   }
 
+  //추가, 수정
   save(cards) {
     Object.keys(cards).map((key) =>
       firebase
@@ -28,6 +29,7 @@ class Database {
     );
   }
 
+  //삭제
   delete(card) {
     firebase
       .database()
@@ -41,6 +43,7 @@ class Database {
       });
   }
 
+  //목록 조회
   load() {
     return firebase.database().ref('users/');
   }

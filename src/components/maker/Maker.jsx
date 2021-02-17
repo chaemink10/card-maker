@@ -6,7 +6,7 @@ import Footer from '../footer/Footer';
 import Editor from '../editor/Editor';
 import Preview from '../preview/Preview';
 
-const Maker = memo(({ authService, FileInput, DBService, cardsLoad }) => {
+const Maker = memo(({ authService, FileInput, DBService }) => {
   const [cards, setCards] = useState({});
   const history = useHistory();
 
@@ -22,17 +22,18 @@ const Maker = memo(({ authService, FileInput, DBService, cardsLoad }) => {
       }
     });
 
+    //목록조회
     DBService.load().on('value', (card) => {
       setCards(card.val());
     });
-  }, [authService, history, cardsLoad, DBService]);
+  }, [authService, history, DBService]);
 
   //Data Add and Update
   const onHandleAddUpdate = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;
-      DBService.save(updated);
+      DBService.save(updated); // data 업데이트
       return updated;
     });
   };
@@ -41,7 +42,7 @@ const Maker = memo(({ authService, FileInput, DBService, cardsLoad }) => {
   const onHandleDelete = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
-      DBService.delete(card);
+      DBService.delete(card); // data 업데이트
       delete updated[card.id];
       return updated;
     });
