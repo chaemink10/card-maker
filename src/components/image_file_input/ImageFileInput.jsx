@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { useRef, useState } from 'react';
 import style from './image_file_input.module.css';
 
 const ImageFileInput = ({ imageService, onUpload, fileName }) => {
+=======
+import React, { memo, useRef, useState } from 'react';
+import style from './image_file_input.module.css';
+
+const ImageFileInput = memo(({ imageService, onUpload, fileName }) => {
+>>>>>>> parent of 12f1372... Updates
   const fileRef = useRef();
   const [loading, setLoding] = useState(false);
 
@@ -35,6 +42,10 @@ const ImageFileInput = ({ imageService, onUpload, fileName }) => {
       {loading && <div className={style.loading}></div>}
     </div>
   );
+<<<<<<< HEAD
 };
+=======
+});
+>>>>>>> parent of 12f1372... Updates
 
 export default ImageFileInput;

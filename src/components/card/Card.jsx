@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React from 'react';
 import style from './card.module.css';
 
 const DEFAULT_IMAGE = 'images/default_logo.png';
 const Card = ({ card }) => {
+=======
+import React, { memo } from 'react';
+import style from './card.module.css';
+
+const DEFAULT_IMAGE = 'images/default_logo.png';
+const Card = memo(({ card }) => {
+>>>>>>> parent of 12f1372... Updates
   const { name, company, title, email, message, theme, fileurl } = card;
 
   const url = fileurl || DEFAULT_IMAGE;
@@ -19,7 +27,11 @@ const Card = ({ card }) => {
       </div>
     </li>
   );
+<<<<<<< HEAD
 };
+=======
+});
+>>>>>>> parent of 12f1372... Updates
 
 function getStyles(theme) {
   switch (theme) {

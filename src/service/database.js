@@ -1,51 +1,24 @@
-import firebaseApp from './firebase';
-import firebase from 'firebase';
+import { firebaseDatabase } from './firebase';
 
 class Database {
-  dbconnect() {
-    const database = firebaseApp.database();
-    return database;
-  }
-
   //추가, 수정
-  save(cards) {
-    Object.keys(cards).map((key) =>
-      firebase
-        .database()
-        .ref('users/' + cards[key].id)
-        .set({
-          id: cards[key].id,
-          name: cards[key].name,
-          company: cards[key].company,
-          theme: cards[key].theme,
-          title: cards[key].title,
-          email: cards[key].email,
-          message: cards[key].message,
-          filename: cards[key].filename || '',
-          fileurl: cards[key].fileurl || '',
-        })
-        .then(() => '')
-        .catch((error) => console.log(error))
-    );
+  save(userId, card) {
+    firebaseDatabase.ref(`${userId}/cards/${card.id}`).set(card);
   }
 
   //삭제
-  delete(card) {
-    firebase
-      .database()
-      .ref('users/' + card.id)
-      .remove()
-      .then(function () {
-        console.log('Remove succeeded.');
-      })
-      .catch(function (error) {
-        console.log('Remove failed: ' + error.message);
-      });
+  delete(userId, card) {
+    firebaseDatabase.ref(`${userId}/cards/${card.id}`).remove();
   }
 
   //목록 조회
-  load() {
-    return firebase.database().ref('users/');
+  load(userId, onUpdate) {
+    const ref = firebaseDatabase.ref(`${userId}/cards`);
+    ref.on('value', (snapshot) => {
+      const cards = snapshot.val();
+      cards && onUpdate(cards);
+    });
+    return () => ref.off(); //더이상 firebase에서 'on'하지 않는 함수 리턴
   }
 }
 

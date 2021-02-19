@@ -6,11 +6,13 @@ const Preview = ({ cards }) => {
   return (
     <div className={style.preview}>
       <h2 className={style.title}>Card Preview</h2>
-      <ul key={cards.key} className={style.cardlist}>
-        {Object.keys(cards).map((key) => (
-          <Card key={key} card={cards[key]} />
-        ))}
-      </ul>
+      {cards && (
+        <ul key={cards.key} className={style.cardlist}>
+          {Object.keys(cards).map((key) => (
+            <Card key={key} card={cards[key]} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
