@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/card-maker/static/css/main.1ba00a87.chunk.css",
-    "main.js": "/card-maker/static/js/main.0e14ea4e.chunk.js",
-    "main.js.map": "/card-maker/static/js/main.0e14ea4e.chunk.js.map",
+    "main.js": "/card-maker/static/js/main.c85c1228.chunk.js",
+    "main.js.map": "/card-maker/static/js/main.c85c1228.chunk.js.map",
     "runtime-main.js": "/card-maker/static/js/runtime-main.87425580.js",
     "runtime-main.js.map": "/card-maker/static/js/runtime-main.87425580.js.map",
     "static/js/2.a6b97491.chunk.js": "/card-maker/static/js/2.a6b97491.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.87425580.js",
     "static/js/2.a6b97491.chunk.js",
     "static/css/main.1ba00a87.chunk.css",
-    "static/js/main.0e14ea4e.chunk.js"
+    "static/js/main.c85c1228.chunk.js"
   ]
 }
