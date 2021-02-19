@@ -6,7 +6,7 @@ import Maker from './components/maker/Maker';
 function App({ FileInput, authService, DBService }) {
   return (
     <div className={style.login}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path={['/', '/login']} exact>
             <Login authService={authService} />
